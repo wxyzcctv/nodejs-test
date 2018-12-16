@@ -1,0 +1,60 @@
+<title>s首页</title>
+<link rel="stylesheet" href="./style.css">
+<h5>您的账户余额是 <span id="amount">&&&amount&&&</span></h5>
+<!-- 这个地方的&&&amount&&&就是一个占位的字符，用来读取数据库里面的存储的值用的 -->
+<!-- 通过form发送POST请求 -->
+<!-- <form action="/pay" method="post">
+    <input type="submit" value="付款">
+</form> -->
+<!-- 由于使用form发送请求的时候需要将页面进行刷新才能看到，当不通过form的方式进行发送请求的时候， -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<button id="button">付款</button>
+<script>
+    button.addEventListener('click',(e)=>{
+        $.ajax({
+            url: "http://wwwxyz.com:8002/pay",
+            dataType: "jsonp",
+            success: function( response ) {
+                if(response === 'success'){
+                    amount.innerText = amount.innerText - 1
+                }
+            }
+        })
+
+        // let functionName = 'wxyz' + parseInt(Math.random()*10000,10)
+        // window[functionName] = function(result){
+        //     if(result === 'success'){
+        //         amount.innerText = amount.innerText - 1
+        //     }else{
+
+        //     }
+        // }
+        // let script = document.createElement('script')
+        // // 按下按钮就生成一个script，并为这个script添加一个src，这个路径就是后台路径
+        // script.src = 'http://wwwxyz.com:8002/pay?callback=' + functionName
+        // // 这里的引号只能是单引号，不能是双引号，为啥呢？
+        // document.body.appendChild(script)
+        // script.onload = function(e){
+        //     e.currentTarget.remove()
+        //     // 因为使用script发送请求成功之后会添加一个script，这个时候就将其删掉
+        //     delete window[functionName]
+        // }
+        // script.onerror = function(e){
+        //     alert('fail')
+        //     e.currentTarget.remove()
+        //     delete window[functionName]
+        // }
+    // let image = document.createElement('img')
+    // image.src = '/pay'
+    // image.onload = function(){
+    //     alert('付款成功')
+    //     amount.innerText = amount.innerText - 1
+    //     // 这个时候就直接可以通过改变页面中的变量来改变页面中的数字显示
+    //     // window.location.reload()
+    //     // 这个地方是刷新整个页面，不是很好，一旦页面变得非常大的时候，刷新很麻烦的
+    // }
+    // image.onerror = function(){
+    //     alert('付款失败')
+    // }
+    })
+</script>
